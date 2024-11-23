@@ -2,8 +2,6 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql2");
 
-app.use(cors());
-
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
