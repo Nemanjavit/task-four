@@ -9,22 +9,20 @@ const connection = mysql.createConnection({
   database: process.env.DB_DATABASE,
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello! I am in vercel.com");
+connection.connect();
+
+app.get("/users", (req, res) => {
+  connection.query("SELECT * FROM users", (err, rows, fields) => {
+    if (err) throw err;
+
+    console.log("The solution is: ", rows);
+  });
 });
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-});
-
-connection.connect();
-
-connection.query("SELECT * FROM users", (err, rows, fields) => {
-  if (err) throw err;
-
-  console.log("The solution is: ", rows);
 });
 
 connection.end();
