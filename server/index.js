@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql2");
 dotenv.config();
+app.use(cors());
 
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
